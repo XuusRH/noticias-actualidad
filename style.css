@@ -1,96 +1,135 @@
 body {
-  font-family: 'Roboto', sans-serif;
   margin: 0;
-  background: #f5f7fa;
-  transition: background 0.3s, color 0.3s;
-}
-body.dark {
-  background: #121212;
-  color: #ddd;
+  font-family: 'Poppins', sans-serif;
+  background: #f5f6fa;
+  color: #333;
 }
 
-.hero {
-  background: url('https://source.unsplash.com/1600x400/?finance,stocks') center/cover no-repeat;
-  height: 300px;
-  position: relative;
+/* Cabecera */
+.main-header {
+  background: url('https://source.unsplash.com/1600x400/?finance,stock') center/cover no-repeat;
   text-align: center;
-  color: white;
-}
-.hero .overlay {
-  position: absolute;
-  inset: 0;
-  background: rgba(0,0,0,0.5);
-}
-.hero-content {
+  padding: 60px 20px;
+  color: #fff;
   position: relative;
-  top: 40%;
-  transform: translateY(-40%);
 }
-.hero h1 {
+.main-header .overlay {
+  background: rgba(0, 0, 50, 0.5);
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+}
+.main-header h1 {
+  position: relative;
   font-family: 'Playfair Display', serif;
-  font-size: 2.8rem;
+  font-size: 2.5rem;
+  margin: 0;
+  z-index: 1;
 }
-.btn-hero {
-  padding: 10px 20px;
-  background: gold;
+.main-header p {
+  position: relative;
+  font-size: 1rem;
+  margin-top: 10px;
+  z-index: 1;
+}
+#menu-btn {
+  position: relative;
+  z-index: 1;
+  margin-top: 20px;
+  background: #ffc107;
   border: none;
+  padding: 10px 20px;
   cursor: pointer;
   font-weight: bold;
+  border-radius: 5px;
 }
 
-#ticker {
-  background: #003366;
-  color: #fff;
-  padding: 8px;
-  font-size: 0.9rem;
-  text-align: center;
-}
-
-.sidebar {
+/* Menú lateral */
+#side-menu {
+  position: fixed;
+  top: 0; left: -260px;
   width: 250px;
+  height: 100%;
   background: #1a237e;
   color: white;
-  position: fixed;
-  left: -250px;
-  top: 0; bottom: 0;
   transition: left 0.3s ease;
   padding: 20px;
+  z-index: 1000;
 }
-.sidebar.active {
-  left: 0;
-}
-.sidebar a {
+#side-menu h2 { margin-top: 0; }
+#side-menu nav a {
   display: block;
-  color: white;
+  color: #fff;
   text-decoration: none;
-  margin: 10px 0;
+  margin: 15px 0;
+  font-size: 1.1rem;
+}
+#side-menu nav a:hover { color: #ffc107; }
+#close-btn {
+  background: red;
+  color: #fff;
+  border: none;
+  float: right;
+  font-size: 1.2rem;
+  cursor: pointer;
 }
 
+/* Noticias */
+.section { padding: 40px 20px; }
 .news-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill,minmax(300px,1fr));
+  grid-template-columns: repeat(auto-fit,minmax(300px,1fr));
   gap: 20px;
-  padding: 20px;
 }
 .news-card {
-  background: white;
+  background: #fff;
   border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
   overflow: hidden;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 .news-card img {
   width: 100%;
-  height: 200px;
+  height: 180px;
   object-fit: cover;
 }
 .news-card h3 {
+  font-size: 1.2rem;
   margin: 10px;
 }
+.news-card p {
+  font-size: 0.9rem;
+  margin: 10px;
+  color: #555;
+}
 .btn-read {
-  display: block;
-  text-align: center;
-  background: #0077ff;
-  color: white;
-  padding: 10px;
+  display: inline-block;
+  margin: 10px;
+  color: #0066cc;
   text-decoration: none;
+  font-weight: bold;
+}
+.btn-read:hover { text-decoration: underline; }
+
+/* Herramientas */
+.tools-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+.tool-btn {
+  flex: 1 1 200px;
+  background: #1a237e;
+  color: #fff;
+  text-align: center;
+  padding: 15px;
+  border-radius: 6px;
+  text-decoration: none;
+}
+.tool-btn:hover { background: #3949ab; }
+
+/* Footer */
+footer {
+  background: #1a237e;
+  color: #fff;
+  text-align: center;
+  padding: 15px 0;
 }
