@@ -1,8 +1,8 @@
-// Proxy para NewsAPI
 export default async function handler(req, res) {
-  const API_KEY = "bcda57c6ef4146a48995b71719060260"; // 
+  const API_KEY = "c6ef4146a48995b71719060260";
+  const category = req.query.category || 'business';
 
-  const url = `https://newsapi.org/v2/everything?q=economia+OR+bolsa+OR+inversion+OR+criptomonedas&language=es&pageSize=10&apiKey=${API_KEY}`;
+  const url = `https://newsapi.org/v2/everything?q=${category}&language=es&pageSize=10&apiKey=${API_KEY}`;
 
   try {
     const response = await fetch(url);
