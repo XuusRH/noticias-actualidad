@@ -5,51 +5,54 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Portal de Finanzas y Actualidad</title>
 
-  <!-- ✅ Fuentes Google -->
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <!-- Fuentes -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
 
-  <!-- ✅ CSS -->
-  <link rel="stylesheet" href="./style.css">
+  <!-- Estilos -->
+  <link rel="stylesheet" href="style.css">
 
-  <!-- ✅ Favicon -->
+  <!-- Favicon -->
   <link rel="icon" href="favicon.ico" type="image/x-icon">
 
-  <!-- ✅ Google AdSense -->
-  <script async 
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7367268518954556"
-          crossorigin="anonymous"></script>
+  <!-- AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7367268518954556" crossorigin="anonymous"></script>
 </head>
 
 <body>
-  <!-- =================== BOTÓN MENU LATERAL =================== -->
-  <button class="menu-toggle" onclick="toggleSidebar()">☰ Menú</button>
-
-  <!-- =================== SIDEBAR LATERAL =================== -->
-  <aside id="sidebar" class="sidebar">
-    <button class="close-btn" onclick="toggleSidebar()">✖</button>
-    <h2>📂 Secciones</h2>
-    <nav>
-      <a href="#" onclick="loadNews('business')">📈 Economía</a>
-      <a href="#" onclick="loadNews('stock')">📊 Bolsa</a>
-      <a href="#" onclick="loadNews('crypto')">💰 Criptomonedas</a>
-      <a href="#" onclick="loadNews('technology')">💻 Tecnología</a>
-      <a href="#" onclick="loadNews('companies')">🏢 Empresas</a>
-      <a href="#tools">🛠️ Herramientas</a>
-    </nav>
-  </aside>
-
-  <!-- =================== CABECERA =================== -->
-  <header class="main-header">
-    <div class="header-content">
+  <!-- ===== HERO CABECERA ===== -->
+  <header class="hero">
+    <div class="overlay"></div>
+    <div class="hero-content">
       <h1>💹 Portal de Finanzas y Actualidad</h1>
       <p>Noticias en tiempo real, análisis y herramientas para tus decisiones financieras</p>
+      <button class="btn-hero" onclick="toggleSidebar()">☰ Explorar Secciones</button>
     </div>
   </header>
 
-  <!-- =================== ADS #1 =================== -->
+  <!-- ===== TICKER EN VIVO ===== -->
+  <div id="ticker">
+    <span id="ticker-content">Cargando cotizaciones...</span>
+  </div>
+
+  <!-- ===== DESPLEGABLE LATERAL ===== -->
+  <aside id="sidebar" class="sidebar">
+    <button class="close-btn" onclick="toggleSidebar()">✖</button>
+    <h3>📂 Secciones</h3>
+    <a href="#" onclick="loadCategory('business')">📈 Economía</a>
+    <a href="#" onclick="loadCategory('markets')">💰 Bolsa</a>
+    <a href="#" onclick="loadCategory('crypto')">🪙 Criptomonedas</a>
+    <a href="#" onclick="loadCategory('technology')">💻 Tecnología</a>
+    <a href="#" onclick="loadCategory('companies')">🏦 Empresas</a>
+    <hr>
+    <h3>🛠 Herramientas</h3>
+    <a href="https://simulador-irpf.vercel.app/" target="_blank">🧮 Calculadora IRPF</a>
+    <a href="https://finanza-toolkit.vercel.app/" target="_blank">🏠 Calculadora Hipotecas</a>
+  </aside>
+
+  <!-- ===== ADS 1 ===== -->
   <div class="ad-container">
     <ins class="adsbygoogle"
-         style="display:block; text-align:center; margin:20px auto;"
+         style="display:block"
          data-ad-client="ca-pub-7367268518954556"
          data-ad-slot="6620277149"
          data-ad-format="auto"
@@ -57,18 +60,18 @@
     <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
   </div>
 
-  <!-- =================== SECCIÓN NOTICIAS =================== -->
-  <main class="section">
-    <h2>📰 Últimas Noticias</h2>
-    <div id="news-container" class="news-grid">
-      <p>⏳ Cargando noticias...</p>
-    </div>
+  <!-- ===== NOTICIAS ===== -->
+  <main>
+    <section id="news-section">
+      <h2>📰 Últimas Noticias</h2>
+      <div id="news-container" class="news-grid">Cargando noticias...</div>
+    </section>
   </main>
 
-  <!-- =================== ADS #2 =================== -->
+  <!-- ===== ADS 2 ===== -->
   <div class="ad-container">
     <ins class="adsbygoogle"
-         style="display:block; text-align:center; margin:20px auto;"
+         style="display:block"
          data-ad-client="ca-pub-7367268518954556"
          data-ad-slot="7747733970"
          data-ad-format="auto"
@@ -76,19 +79,10 @@
     <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
   </div>
 
-  <!-- =================== SECCIÓN HERRAMIENTAS =================== -->
-  <section id="tools" class="section">
-    <h2>🛠️ Herramientas</h2>
-    <div class="tools-container">
-      <a class="tool-btn" href="https://simulador-irpf.vercel.app/" target="_blank">🧮 Calculadora IRPF</a>
-      <a class="tool-btn" href="https://finanza-toolkit.vercel.app/" target="_blank">🏠 Calculadora Hipotecas</a>
-    </div>
-  </section>
-
-  <!-- =================== ADS #3 =================== -->
+  <!-- ===== ADS 3 ===== -->
   <div class="ad-container">
     <ins class="adsbygoogle"
-         style="display:block; text-align:center; margin:20px auto;"
+         style="display:block"
          data-ad-client="ca-pub-7367268518954556"
          data-ad-slot="5774099335"
          data-ad-format="auto"
@@ -96,19 +90,12 @@
     <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
   </div>
 
-  <!-- =================== FOOTER =================== -->
+  <!-- ===== FOOTER ===== -->
   <footer>
     <p>© 2025 Portal de Finanzas y Actualidad</p>
+    <button id="dark-toggle" onclick="toggleDarkMode()">🌙 Modo Oscuro</button>
   </footer>
 
-  <!-- ✅ Script principal -->
-  <script src="./script.js"></script>
-
-  <!-- ✅ Script para el sidebar -->
-  <script>
-    function toggleSidebar() {
-      document.getElementById('sidebar').classList.toggle('open');
-    }
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
