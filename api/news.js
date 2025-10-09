@@ -3,7 +3,7 @@
 // ============================
 
 export default async function handler(req, res) {
-  const API_KEY = "C6efA146a48995b71719060260"; // <-- tu clave NewsAPI
+  const API_KEY = "C6efA146a48995b71719060260"; // 
   const category = req.query.category || "business";
 
   const url = `https://newsapi.org/v2/everything?q=${category}&language=es&pageSize=10&apiKey=${API_KEY}`;
