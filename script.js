@@ -1,18 +1,18 @@
 // ==============================
-// Script Portal Finanzas
+// Script Portal Finanzas con Rotación y Límite
 // ==============================
 
-// APIs disponibles
+// APIs en orden de preferencia
 const apiList = [
   { name: "Currents", base: "https://api.currentsapi.services/v1/latest-news?language=es&category=", key: "7vegIhuwUaAHXj9HyBJd0hHJgsZGcuCxhgvYJw5RDt931Bxd" },
-  { name: "GNews", base: "https://gnews.io/api/v4/top-headlines?lang=es&topic=", key: "0dada3dba36102c3b1430a9889b5371" },
+  { name: "GNews", base: "https://gnews.io/api/v4/search?q=", key: "0dada3dba36102c3b1430a9889b5371" },
   { name: "NewsAPI", base: "https://newsapi.org/v2/everything?q=", key: "C6ef4146a48995b71719060260" }
 ];
 
-let currentAPI = 0; // API activa
-let lastFetchTime = 0;
-const FETCH_INTERVAL = 15 * 60 * 1000; // 15 minutos
-let currentCategory = "business";
+let currentAPI = 0;           // API activa
+let lastFetchTime = 0;        // última llamada
+const FETCH_INTERVAL = 15 * 60 * 1000;  // cada 15 min
+let currentCategory = "business";      // categoría por defecto
 
 // =================== Cargar noticias ===================
 async function loadNews(category = "business", force = false) {
@@ -20,20 +20,22 @@ async function loadNews(category = "business", force = false) {
   const container = document.getElementById("news-container");
   const now = Date.now();
 
-  if (!force && (now - lastFetchTime < FETCH_INTERVAL)) {
-    console.log("⏳ Usando datos recientes");
+  // Evita sobrecargar llamadas si no forzamos
+  if (!force && now - lastFetchTime < FETCH_INTERVAL) {
+    console.log("⏳ Usando datos recientes (caché)");
   }
 
   container.innerHTML = `<p>⏳ Cargando noticias...</p>`;
 
-  for (let i = 0; i < apiList.length; i++) {
+  for (let attempt = 0; attempt < apiList.length; attempt++) {
     const api = apiList[currentAPI];
     let url = "";
 
+    // Construir URL según API
     if (api.name === "Currents") {
       url = `${api.base}${category}&apiKey=${api.key}`;
     } else if (api.name === "GNews") {
-      url = `${api.base}${category}&max=10&apikey=${api.key}`;
+      url = `${api.base}${category}&lang=es&max=10&apikey=${api.key}`;
     } else if (api.name === "NewsAPI") {
       url = `${api.base}${category}&language=es&pageSize=10&apiKey=${api.key}`;
     }
@@ -68,7 +70,7 @@ async function loadNews(category = "business", force = false) {
         `;
         container.appendChild(card);
       });
-      return; // Éxito, no seguir probando más APIs
+      return;  // éxito → no probar más APIs
     } catch (err) {
       console.warn(`⚠️ Error con ${api.name}, probando siguiente...`, err);
       currentAPI = (currentAPI + 1) % apiList.length;
