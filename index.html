@@ -1,92 +1,99 @@
-// ======================================
-// 🚀 Script de Portal Finanzas con Rotación y Limitador
-// ======================================
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portal de Finanzas y Actualidad</title>
 
-// 🔑 APIs en orden de preferencia
-const apiList = [
-  { name: "Currents", base: "https://api.currentsapi.services/v1/latest-news?language=es&category=", key: "7vegIhuwUaAHXj9HyBJd0hHJgsZGcuCxhgvYJw5RDt931Bxd" },
-  { name: "GNews", base: "https://gnews.io/api/v4/top-headlines?lang=es&topic=", key: "0dada3dba36102c3b1430a9889b5371" },
-  { name: "NewsAPI", base: "https://newsapi.org/v2/everything?q=", key: "C6ef4146a48995b71719060260" }
-];
+  <!-- Fuentes -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 
-let currentAPI = 0;           // API activa
-let currentCategory = "business"; // categoría por defecto
-let lastFetchTime = 0;        // última llamada
-const FETCH_INTERVAL = 15 * 60 * 1000; // 15 min en ms
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
 
-// ======================================
-// 📰 Cargar noticias con caché y límite
-// ======================================
-async function loadNews(category = "business", force = false) {
-  currentCategory = category;
-  const container = document.getElementById("news-container");
+  <!-- Adsense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7367268518954556" crossorigin="anonymous"></script>
+</head>
 
-  // 🕒 Control de frecuencia
-  const now = Date.now();
-  if (!force && now - lastFetchTime < FETCH_INTERVAL) {
-    console.log("⏳ Usando datos en caché, evitando exceso de llamadas.");
-    return;
-  }
+<body>
+  <!-- ================= CABECERA ================= -->
+  <header class="main-header">
+    <div class="overlay"></div>
+    <h1>💹 Portal de Finanzas y Actualidad</h1>
+    <p>Noticias en tiempo real, análisis y herramientas para tus decisiones financieras</p>
+    <button id="menu-btn">☰ Secciones</button>
+  </header>
 
-  container.innerHTML = `<p>⏳ Cargando noticias...</p>`;
+  <!-- ================= MENÚ LATERAL ================= -->
+  <aside id="side-menu">
+    <button id="close-btn">✖</button>
+    <h2>📂 Secciones</h2>
+    <nav>
+      <a href="#" onclick="loadNews('business')">💰 Economía</a>
+      <a href="#" onclick="loadNews('stocks')">📈 Bolsa</a>
+      <a href="#" onclick="loadNews('crypto')">💱 Criptomonedas</a>
+      <a href="#" onclick="loadNews('technology')">💻 Tecnología</a>
+      <a href="#" onclick="loadNews('companies')">🏢 Empresas</a>
+      <hr>
+      <a href="#tools">🛠 Herramientas</a>
+    </nav>
+  </aside>
 
-  const api = apiList[currentAPI];
-  let url = "";
+  <!-- ================= ANUNCIO 1 ================= -->
+  <div class="ad-container">
+    <ins class="adsbygoogle"
+         style="display:block;text-align:center;margin:20px auto;"
+         data-ad-client="ca-pub-7367268518954556"
+         data-ad-slot="6620277149"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  </div>
 
-  // 🔗 Construir URL según la API activa
-  if (api.name === "Currents") {
-    url = `${api.base}${category}&apiKey=${api.key}`;
-  } else if (api.name === "GNews") {
-    url = `${api.base}${category}&max=10&apikey=${api.key}`;
-  } else if (api.name === "NewsAPI") {
-    url = `${api.base}${category}&language=es&pageSize=10&apiKey=${api.key}`;
-  }
+  <!-- ================= NOTICIAS ================= -->
+  <section id="news" class="section">
+    <h2>📰 Últimas Noticias</h2>
+    <div id="news-container" class="news-grid">
+      Cargando noticias...
+    </div>
+  </section>
 
-  try {
-    const res = await fetch(url);
-    if (res.status === 429 || res.status === 401) {
-      console.warn(`🚫 Límite alcanzado en ${api.name}, cambiando de API...`);
-      currentAPI = (currentAPI + 1) % apiList.length;
-      return loadNews(category, true); // forzar siguiente API
-    }
+  <!-- ================= ANUNCIO 2 ================= -->
+  <div class="ad-container">
+    <ins class="adsbygoogle"
+         style="display:block;text-align:center;margin:20px auto;"
+         data-ad-client="ca-pub-7367268518954556"
+         data-ad-slot="7747733970"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  </div>
 
-    if (!res.ok) throw new Error(`Error HTTP: ${res.status}`);
+  <!-- ================= HERRAMIENTAS ================= -->
+  <section id="tools" class="section">
+    <h2>🛠 Herramientas</h2>
+    <div class="tools-container">
+      <a class="tool-btn" href="https://simulador-irpf.vercel.app/" target="_blank">🧮 Calculadora IRPF</a>
+      <a class="tool-btn" href="https://finanza-toolkit.vercel.app/" target="_blank">🏠 Calculadora Hipotecas</a>
+    </div>
+  </section>
 
-    const data = await res.json();
-    lastFetchTime = now; // actualizar última llamada
-    container.innerHTML = "";
+  <!-- ================= ANUNCIO 3 ================= -->
+  <div class="ad-container">
+    <ins class="adsbygoogle"
+         style="display:block;text-align:center;margin:20px auto;"
+         data-ad-client="ca-pub-7367268518954556"
+         data-ad-slot="5774099335"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  </div>
 
-    const articles = data.news || data.articles || [];
-    if (articles.length === 0) {
-      container.innerHTML = `<p>⚠️ No hay noticias disponibles.</p>`;
-      return;
-    }
+  <!-- ================= FOOTER ================= -->
+  <footer>
+    <p>© 2025 Portal de Finanzas y Actualidad</p>
+  </footer>
 
-    // 📰 Crear tarjetas
-    articles.forEach(article => {
-      const card = document.createElement("div");
-      card.classList.add("news-card");
-      card.innerHTML = `
-        <img src="${article.image || article.urlToImage || 'https://via.placeholder.com/400x200?text=Sin+Imagen'}" alt="imagen">
-        <div class="news-content">
-          <h3>${article.title}</h3>
-          <p>${article.description || article.summary || ''}</p>
-          <a class="btn-read" href="${article.url}" target="_blank">🔗 Leer más</a>
-        </div>
-      `;
-      container.appendChild(card);
-    });
-
-  } catch (error) {
-    console.error("❌ Error al cargar noticias:", error);
-    container.innerHTML = `<p>⚠️ No se pudieron cargar las noticias. Intenta más tarde.</p>`;
-  }
-}
-
-// ======================================
-// ⚡ Cargar al inicio + refrescar cada 15min
-// ======================================
-document.addEventListener("DOMContentLoaded", () => {
-  loadNews();
-  setInterval(() => loadNews(currentCategory), FETCH_INTERVAL);
-});
+  <script src="script.js"></script>
+</body>
+</html>
