@@ -1,90 +1,91 @@
-/* ======== RESETEO ======== */
+/* ====== RESET ====== */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* ======== BODY ======== */
+/* ====== BODY ====== */
 body {
-  font-family: 'Poppins', Arial, sans-serif;
-  background: #f5f7fa;
-  color: #222;
+  font-family: 'Poppins', sans-serif;
+  background: #f4f5f7 url('https://www.transparenttextures.com/patterns/gplay.png');
+  color: #2b2b2b;
   line-height: 1.6;
 }
 
-/* ======== HEADER ======== */
+/* ====== HEADER ====== */
 .main-header {
-  background: linear-gradient(90deg, #007bff, #00c6ff);
-  color: white;
+  background: linear-gradient(135deg, #ffffffdd, #f5f5f5dd);
+  backdrop-filter: blur(10px);
   text-align: center;
-  padding: 30px 10px;
-  border-radius: 0 0 20px 20px;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  padding: 40px 20px 30px;
+  border-bottom: 2px solid #e6e6e6;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.1);
 }
 
 .main-header h1 {
-  font-size: 2.8rem;
+  font-family: 'Playfair Display', serif;
+  font-size: 3rem;
   font-weight: 700;
-  text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
-  margin-bottom: 10px;
+  color: #0c3c78;
+  text-shadow: 1px 1px 4px rgba(0,0,0,0.1);
+  margin-bottom: 15px;
 }
 
 .main-header nav a {
-  color: #fff;
-  margin: 0 20px;
-  font-size: 1.1rem;
+  color: #0c3c78;
+  font-weight: 600;
+  margin: 0 25px;
   text-decoration: none;
-  font-weight: 500;
+  font-size: 1.1rem;
   transition: color 0.3s;
 }
 
 .main-header nav a:hover {
-  color: #ffeb3b;
+  color: #1e88e5;
 }
 
-/* ======== SECCIONES ======== */
+/* ====== SECCIONES ====== */
 .section {
-  padding: 40px 20px;
+  padding: 50px 20px;
   max-width: 1200px;
   margin: auto;
 }
 
 .section h2 {
-  font-size: 2rem;
+  font-size: 2.2rem;
   font-weight: 700;
+  font-family: 'Playfair Display', serif;
+  color: #0c3c78;
   margin-bottom: 30px;
-  color: #333;
-  border-left: 5px solid #007bff;
-  padding-left: 10px;
+  border-left: 5px solid #1e88e5;
+  padding-left: 12px;
 }
 
-/* ======== GRID DE NOTICIAS ======== */
+/* ====== GRID DE NOTICIAS ====== */
 .news-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  gap: 25px;
+  gap: 30px;
 }
 
-/* ======== TARJETAS DE NOTICIAS ======== */
+/* ====== TARJETAS DE NOTICIAS ====== */
 .news-card {
-  background: #fff;
-  border-radius: 15px;
+  background: #ffffffee;
+  border-radius: 18px;
   overflow: hidden;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  display: flex;
-  flex-direction: column;
-  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
 }
 
 .news-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+  transform: translateY(-6px);
+  box-shadow: 0 10px 22px rgba(0,0,0,0.15);
 }
 
 .news-card img {
   width: 100%;
-  height: 180px;
+  height: 200px;
   object-fit: cover;
 }
 
@@ -94,60 +95,60 @@ body {
 
 .news-card h3 {
   font-size: 1.3rem;
-  font-weight: 600;
+  font-weight: 700;
+  color: #0c3c78;
   margin-bottom: 10px;
 }
 
 .news-card p {
   font-size: 0.95rem;
   color: #555;
-  margin-bottom: 15px;
+  margin-bottom: 20px;
 }
 
 .news-card a {
   display: inline-block;
+  background: linear-gradient(90deg, #1e88e5, #42a5f5);
+  color: #fff;
   padding: 10px 15px;
-  background: linear-gradient(90deg, #007bff, #00c6ff);
-  color: white;
   border-radius: 10px;
-  font-size: 0.9rem;
   text-decoration: none;
-  transition: background 0.3s ease-in-out;
+  font-weight: 600;
+  transition: background 0.3s;
 }
 
 .news-card a:hover {
-  background: linear-gradient(90deg, #0056d1, #00a6d6);
+  background: linear-gradient(90deg, #1565c0, #2196f3);
 }
 
-/* ======== BOTONES DE HERRAMIENTAS ======== */
+/* ====== HERRAMIENTAS ====== */
 .tools-container {
   display: flex;
   justify-content: center;
-  flex-wrap: wrap;
   gap: 25px;
+  flex-wrap: wrap;
 }
 
 .tool-btn {
-  display: inline-block;
+  background: linear-gradient(135deg, #42a5f5, #1e88e5);
+  color: #fff;
   padding: 15px 25px;
   font-size: 1.1rem;
   font-weight: 600;
-  color: white;
-  background: linear-gradient(90deg, #00c6ff, #007bff);
   border-radius: 12px;
   text-decoration: none;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-  transition: transform 0.2s ease-in-out;
+  box-shadow: 0 5px 14px rgba(0,0,0,0.2);
+  transition: transform 0.3s;
 }
 
 .tool-btn:hover {
-  transform: scale(1.05);
+  transform: translateY(-4px);
 }
 
-/* ======== FOOTER ======== */
+/* ====== FOOTER ====== */
 footer {
-  background: #007bff;
-  color: white;
+  background: #0c3c78;
+  color: #fff;
   text-align: center;
   padding: 20px;
   font-size: 0.9rem;
