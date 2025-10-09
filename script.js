@@ -9,10 +9,10 @@ const apiList = [
   { name: "NewsAPI", base: "https://newsapi.org/v2/everything?q=", key: "C6ef4146a48995b71719060260" }
 ];
 
-let currentAPI = 0;           // API activa
-let lastFetchTime = 0;        // última llamada
-const FETCH_INTERVAL = 15 * 60 * 1000;  // cada 15 min
-let currentCategory = "business";      // categoría por defecto
+let currentAPI = 0;                 // API activa
+let lastFetchTime = 0;              // última llamada
+const FETCH_INTERVAL = 15 * 60 * 1000; // cada 15 min
+let currentCategory = "business";   // categoría por defecto
 
 // =================== Cargar noticias ===================
 async function loadNews(category = "business", force = false) {
@@ -87,6 +87,16 @@ document.getElementById("menu-btn").addEventListener("click", () => {
 
 document.getElementById("close-btn").addEventListener("click", () => {
   document.getElementById("side-menu").style.left = "-260px";
+});
+
+// === 🔥 Escuchar clicks de categorías ===
+document.querySelectorAll("#side-menu a[data-category]").forEach(link => {
+  link.addEventListener("click", (e) => {
+    e.preventDefault();
+    const selectedCategory = link.getAttribute("data-category");
+    loadNews(selectedCategory, true);       // carga forzada al pinchar
+    document.getElementById("side-menu").style.left = "-260px";  // cerrar menú
+  });
 });
 
 // =================== Inicio ===================
