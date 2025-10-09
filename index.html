@@ -1,45 +1,59 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
   <title>Portal de Finanzas y Actualidad</title>
+  <meta name="description" content="Noticias de economía, bolsa y cripto en tiempo real, herramientas y estrategias. El pulso financiero al instante." />
+  <meta name="theme-color" content="#0b1f3a" />
 
   <!-- Fuentes -->
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
 
-  <link rel="stylesheet" href="style.css">
-  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <!-- Estilos -->
+  <link rel="stylesheet" href="style.css" />
+  <link rel="manifest" href="manifest.json" />
+  <link rel="icon" href="favicon.ico" />
 
-  <!-- Adsense -->
+  <!-- Google AdSense -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7367268518954556" crossorigin="anonymous"></script>
 </head>
-
 <body>
-  <!-- ================= CABECERA ================= -->
-  <header class="main-header">
-    <div class="overlay"></div>
-    <h1>💹 Portal de Finanzas y Actualidad</h1>
-    <p>Noticias en tiempo real, análisis y herramientas para tus decisiones financieras</p>
-    <button id="menu-btn">☰ Secciones</button>
+
+  <!-- ====== Ticker superior (crypto + breaking) ====== -->
+  <div id="top-ticker" class="top-ticker">
+    <div class="ticker-inner" id="ticker-inner">Cargando mercado…</div>
+  </div>
+
+  <!-- ====== Hero con parallax, modo oscuro y CTA ====== -->
+  <header class="hero" id="hero">
+    <div class="hero-overlay">
+      <div class="hero-content">
+        <h1>El pulso financiero al instante</h1>
+        <p class="subtitle">Noticias, análisis y herramientas para decidir mejor</p>
+        <div class="hero-cta">
+          <a href="#news" class="btn cta">Ver noticias</a>
+          <button id="menu-btn" class="btn ghost">☰ Categorías</button>
+        </div>
+      </div>
+      <button id="theme-toggle" class="theme-toggle" aria-label="Cambiar tema">🌙</button>
+    </div>
   </header>
 
-  <!-- ================= MENÚ LATERAL ================= -->
-  <aside id="side-menu">
-    <button id="close-btn">✖</button>
-    <h2>📂 Secciones</h2>
-    <nav>
-      <a href="#" onclick="loadNews('business')">💰 Economía</a>
-      <a href="#" onclick="loadNews('stocks')">📈 Bolsa</a>
-      <a href="#" onclick="loadNews('crypto')">💱 Criptomonedas</a>
-      <a href="#" onclick="loadNews('technology')">💻 Tecnología</a>
-      <a href="#" onclick="loadNews('companies')">🏢 Empresas</a>
-      <hr>
-      <a href="#tools">🛠 Herramientas</a>
-    </nav>
-  </aside>
+  <!-- ====== Menú lateral ====== -->
+  <nav id="side-menu" class="side-menu">
+    <button id="close-btn" aria-label="Cerrar menú">✖</button>
+    <h3>📂 Secciones</h3>
+    <a href="#" data-category="business">💼 Economía</a>
+    <a href="#" data-category="stocks">📈 Bolsa</a>
+    <a href="#" data-category="crypto">🪙 Criptomonedas</a>
+    <a href="#" data-category="technology">💻 Tecnología</a>
+    <a href="#" data-category="companies">🏢 Empresas</a>
+    <a href="#tools">🛠️ Herramientas</a>
+  </nav>
 
-  <!-- ================= ANUNCIO 1 ================= -->
+  <!-- ====== ADS 1 ====== -->
   <div class="ad-container">
     <ins class="adsbygoogle"
          style="display:block;text-align:center;margin:20px auto;"
@@ -50,50 +64,148 @@
     <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
   </div>
 
-  <!-- ================= NOTICIAS ================= -->
-  <section id="news" class="section">
-    <h2>📰 Últimas Noticias</h2>
-    <div id="news-container" class="news-grid">
-      Cargando noticias...
-    </div>
-  </section>
+  <!-- ====== Noticias ====== -->
+  <main>
+    <section id="news" class="section">
+      <h2>📰 Últimas Noticias</h2>
+      <p id="loading-msg" class="loading-msg"></p>
+      <div id="news-container" class="news-grid">
+        ⏳ Cargando noticias…
+      </div>
+    </section>
 
-  <!-- ================= ANUNCIO 2 ================= -->
-  <div class="ad-container">
-    <ins class="adsbygoogle"
-         style="display:block;text-align:center;margin:20px auto;"
-         data-ad-client="ca-pub-7367268518954556"
-         data-ad-slot="7747733970"
-         data-ad-format="auto"
-         data-full-width-responsive="true"></ins>
-    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    <!-- ====== ADS 2 ====== -->
+    <div class="ad-container">
+      <ins class="adsbygoogle"
+           style="display:block;text-align:center;margin:20px auto;"
+           data-ad-client="ca-pub-7367268518954556"
+           data-ad-slot="7747733970"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
+
+    <!-- ====== Widgets (TradingView) ====== -->
+    <section id="widgets" class="section">
+      <h2>📊 Tendencias & Calendario</h2>
+
+      <!-- TradingView Ticker Tape -->
+      <div class="tv-wrap">
+        <div class="tradingview-widget-container">
+          <div class="tradingview-widget-container__widget"></div>
+          <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
+          {
+            "symbols": [
+              {"proName": "FOREXCOM:SPXUSD", "title": "S&P 500"},
+              {"proName": "NASDAQ:NDX", "title": "Nasdaq 100"},
+              {"proName": "BITSTAMP:BTCUSD", "title": "Bitcoin"},
+              {"proName": "BITSTAMP:ETHUSD", "title": "Ethereum"},
+              {"proName": "FOREXCOM:EURUSD", "title": "EUR/USD"}
+            ],
+            "showSymbolLogo": true,
+            "colorTheme": "light",
+            "isTransparent": false,
+            "displayMode": "adaptive",
+            "locale": "es"
+          }
+          </script>
+        </div>
+      </div>
+
+      <!-- 2 mini gráficos -->
+      <div class="mini-charts">
+        <div class="tradingview-widget-container">
+          <div class="tradingview-widget-container__widget"></div>
+          <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js" async>
+          {
+            "symbol": "BITSTAMP:BTCUSD",
+            "width": "100%",
+            "height": "220",
+            "locale": "es",
+            "dateRange": "1D",
+            "colorTheme": "light",
+            "trendLineColor": "#37a169",
+            "isTransparent": false
+          }
+          </script>
+        </div>
+
+        <div class="tradingview-widget-container">
+          <div class="tradingview-widget-container__widget"></div>
+          <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js" async>
+          {
+            "symbol": "FOREXCOM:SPXUSD",
+            "width": "100%",
+            "height": "220",
+            "locale": "es",
+            "dateRange": "1D",
+            "colorTheme": "light",
+            "trendLineColor": "#1e90ff",
+            "isTransparent": false
+          }
+          </script>
+        </div>
+      </div>
+
+      <!-- Calendario económico (TradingView) -->
+      <div class="tv-wrap">
+        <div class="tradingview-widget-container">
+          <div class="tradingview-widget-container__widget"></div>
+          <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-events.js" async>
+          {
+            "width": "100%",
+            "height": "420",
+            "locale": "es",
+            "importanceFilter": "-1,0,1",
+            "currencyFilter": "USD,EUR,GBP,JPY"
+          }
+          </script>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====== ADS 3 ====== -->
+    <div class="ad-container">
+      <ins class="adsbygoogle"
+           style="display:block;text-align:center;margin:20px auto;"
+           data-ad-client="ca-pub-7367268518954556"
+           data-ad-slot="5774099335"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
+
+    <!-- ====== Herramientas ====== -->
+    <section id="tools" class="section">
+      <h2>🛠️ Herramientas</h2>
+      <div class="tools-container">
+        <a class="tool-btn" href="https://simulador-irpf.vercel.app/" target="_blank">🧮 Calculadora IRPF</a>
+        <a class="tool-btn" href="https://finanza-toolkit.vercel.app/" target="_blank">🏠 Calculadora Hipotecas</a>
+      </div>
+    </section>
+  </main>
+
+  <!-- ====== Newsletter Modal ====== -->
+  <div id="newsletter-modal" class="modal hidden">
+    <div class="modal-box">
+      <button id="modal-close" class="modal-close">✖</button>
+      <h3>🗞️ Top 5 estrategias semanales</h3>
+      <p>Recibe cada semana un resumen accionable, sin spam.</p>
+      <form id="newsletter-form" action="#" method="post">
+        <!-- Sustituye action por tu endpoint de Mailchimp/Brevo cuando lo tengas -->
+        <input type="email" name="email" placeholder="Tu email" required />
+        <button class="btn cta" type="submit">Quiero suscribirme</button>
+      </form>
+      <small class="muted">Puedes darte de baja en cualquier momento.</small>
+    </div>
   </div>
 
-  <!-- ================= HERRAMIENTAS ================= -->
-  <section id="tools" class="section">
-    <h2>🛠 Herramientas</h2>
-    <div class="tools-container">
-      <a class="tool-btn" href="https://simulador-irpf.vercel.app/" target="_blank">🧮 Calculadora IRPF</a>
-      <a class="tool-btn" href="https://finanza-toolkit.vercel.app/" target="_blank">🏠 Calculadora Hipotecas</a>
-    </div>
-  </section>
-
-  <!-- ================= ANUNCIO 3 ================= -->
-  <div class="ad-container">
-    <ins class="adsbygoogle"
-         style="display:block;text-align:center;margin:20px auto;"
-         data-ad-client="ca-pub-7367268518954556"
-         data-ad-slot="5774099335"
-         data-ad-format="auto"
-         data-full-width-responsive="true"></ins>
-    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-  </div>
-
-  <!-- ================= FOOTER ================= -->
+  <!-- ====== Footer ====== -->
   <footer>
     <p>© 2025 Portal de Finanzas y Actualidad</p>
   </footer>
 
+  <!-- Scripts -->
   <script src="script.js"></script>
 </body>
 </html>
