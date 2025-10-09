@@ -1,16 +1,15 @@
 // ===========================
-// Script de Portal Finanzas
+// Script Portal Finanzas
 // ===========================
 
-// 🔑 Tu clave de GNews
+// 🔑 Tu clave
 const API_KEY = "0dada3dba36102c3b1430a9889b5371";
 
-// 🌐 URL para obtener noticias
-// Usamos "search" en vez de "top-headlines" para evitar limitaciones del plan
-const NEWS_URL = `https://gnews.io/api/v4/search?q=bolsa+OR+finanzas+OR+economia+OR+criptomonedas&lang=es&max=10&apikey=${API_KEY}`;
+// 🌐 URL usando `search` (compatible con el plan gratuito)
+const NEWS_URL = `https://gnews.io/api/v4/search?q=finanzas+OR+economia+OR+bolsa+OR+criptomonedas&lang=es&max=10&apikey=${API_KEY}`;
 
 // ===========================
-// Función para cargar noticias
+// Cargar noticias
 // ===========================
 async function loadNews() {
   const container = document.getElementById('news-container');
@@ -23,19 +22,18 @@ async function loadNews() {
     const data = await response.json();
     container.innerHTML = "";
 
-    // Verificamos que haya artículos
     if (!data.articles || data.articles.length === 0) {
       container.innerHTML = "<p>⚠️ No hay noticias disponibles.</p>";
       return;
     }
 
-    // Mostramos los artículos en tarjetas
+    // Crear tarjetas para cada noticia
     data.articles.forEach(article => {
-      const card = document.createElement('div');
-      card.classList.add('news-card');
+      const card = document.createElement("div");
+      card.classList.add("news-card");
 
       card.innerHTML = `
-        <img src="${article.image || 'https://via.placeholder.com/400x200?text=Sin+Imagen'}" alt="imagen">
+        <img src="${article.image || 'https://via.placeholder.com/600x300?text=Sin+Imagen'}" alt="imagen">
         <div class="news-content">
           <h3>${article.title}</h3>
           <p>${article.description || ''}</p>
@@ -47,12 +45,10 @@ async function loadNews() {
     });
 
   } catch (error) {
-    console.error("❌ Error al obtener noticias", error);
+    console.error("❌ Error al obtener noticias:", error);
     container.innerHTML = `<p>⚠️ No se pudieron cargar las noticias. Intenta más tarde.</p>`;
   }
 }
 
-// ===========================
-// Ejecutar al cargar la página
-// ===========================
+// Ejecutar al cargar
 document.addEventListener("DOMContentLoaded", loadNews);
