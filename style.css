@@ -1,181 +1,206 @@
 /* ===============================
-   Fuente moderna
-================================= */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
-
+   RESET Y FUENTE
+================================== */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Poppins', sans-serif;
 }
 
 body {
-  background: #f4f6f8;
+  font-family: 'Montserrat', sans-serif;
+  background: #f6f7fb;
   color: #333;
   line-height: 1.6;
 }
 
 /* ===============================
-   Encabezado
-================================= */
-header {
-  background: linear-gradient(135deg, #0072ff, #00c6ff);
-  color: white;
-  text-align: center;
+   CABECERA
+================================== */
+.main-header {
+  background: linear-gradient(90deg, #007bff, #00c6ff);
+  color: #fff;
   padding: 2rem 1rem 3rem;
-  border-bottom-left-radius: 20px;
-  border-bottom-right-radius: 20px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+  border-bottom-left-radius: 40px;
+  border-bottom-right-radius: 40px;
+  box-shadow: 0 5px 25px rgba(0,0,0,0.2);
+}
+
+.main-header .container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo-emoji {
+  font-size: 3rem;
+  background: #fff;
+  border-radius: 12px;
+  padding: 5px 10px;
+  color: #00c6ff;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+.logo h1 {
+  font-weight: 700;
+  font-size: 2.2rem;
+  line-height: 1.2;
+  text-shadow: 2px 2px 6px rgba(0,0,0,0.3);
+}
+
+.logo h1 span {
+  font-weight: 500;
+  font-size: 1.8rem;
+}
+
+nav {
+  margin-top: 1rem;
+}
+
+nav a {
+  color: #fff;
+  font-weight: 500;
+  text-decoration: none;
+  margin: 0 15px;
+  font-size: 1.1rem;
   position: relative;
 }
 
-header h1 {
-  font-size: 2.8rem;
-  font-weight: 700;
-  text-shadow: 2px 2px 8px rgba(0,0,0,0.25);
-  margin-bottom: 0.8rem;
+nav a::after {
+  content: '';
+  display: block;
+  height: 3px;
+  background: #fff;
+  width: 0%;
+  transition: 0.3s ease-in-out;
+  margin-top: 5px;
 }
 
-header nav a {
-  color: white;
-  font-size: 1.1rem;
-  font-weight: 500;
-  margin: 0 20px;
-  text-decoration: none;
-  transition: color 0.3s ease;
-}
-
-header nav a:hover {
-  color: #ffe57f;
-  text-decoration: underline;
+nav a:hover::after {
+  width: 100%;
 }
 
 /* ===============================
-   Secciones principales
-================================= */
-section {
-  max-width: 1200px;
+   SECCIONES
+================================== */
+.section {
+  max-width: 1100px;
   margin: 3rem auto;
-  padding: 0 1rem;
+  padding: 0 20px;
 }
 
-section h2 {
+.section h2 {
   font-size: 2rem;
-  font-weight: 700;
-  color: #1e3c72;
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
+  color: #222;
   text-align: center;
 }
 
 /* ===============================
-   Tarjetas de noticias
-================================= */
-#news-container {
+   NOTICIAS
+================================== */
+.news-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  gap: 1.8rem;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
 }
 
 .news-card {
-  background: white;
-  border-radius: 16px;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+  background: #fff;
+  border-radius: 15px;
   overflow: hidden;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.1);
   display: flex;
   flex-direction: column;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .news-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+  transform: translateY(-5px);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.15);
 }
 
 .news-card img {
   width: 100%;
-  height: 200px;
+  height: 180px;
   object-fit: cover;
 }
 
-.news-card .content {
+.news-content {
   padding: 1rem 1.2rem;
-  flex: 1;
 }
 
-.news-card h3 {
+.news-content h3 {
   font-size: 1.2rem;
   font-weight: 600;
-  margin-bottom: 0.5rem;
-  color: #222;
+  margin-bottom: 0.6rem;
 }
 
-.news-card p {
+.news-content p {
   font-size: 0.95rem;
   color: #555;
   margin-bottom: 1rem;
 }
 
-.news-card a {
+.read-more {
   display: inline-block;
-  background: linear-gradient(90deg, #0072ff, #00c6ff);
-  color: white;
+  background: linear-gradient(90deg, #007bff, #00c6ff);
+  color: #fff;
   text-decoration: none;
   font-weight: 600;
-  padding: 0.6rem 1.2rem;
+  padding: 0.7rem 1.2rem;
   border-radius: 8px;
+  text-align: center;
   transition: background 0.3s ease;
 }
 
-.news-card a:hover {
-  background: linear-gradient(90deg, #00c6ff, #0072ff);
+.read-more:hover {
+  background: linear-gradient(90deg, #0056d2, #00aaff);
 }
 
 /* ===============================
-   Herramientas
-================================= */
+   HERRAMIENTAS
+================================== */
 .tools-container {
   display: flex;
-  flex-wrap: wrap;
   justify-content: center;
   gap: 1.5rem;
+  flex-wrap: wrap;
+  margin-top: 2rem;
 }
 
 .tool-btn {
-  display: inline-block;
-  background: linear-gradient(90deg, #00c6ff, #0072ff);
-  color: white;
-  font-size: 1.1rem;
-  font-weight: 600;
+  background: linear-gradient(90deg, #007bff, #00c6ff);
+  color: #fff;
   text-decoration: none;
-  padding: 1rem 2rem;
-  border-radius: 12px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-  transition: all 0.3s ease;
+  font-weight: 600;
+  padding: 0.8rem 2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .tool-btn:hover {
   transform: translateY(-4px);
-  background: linear-gradient(90deg, #0072ff, #00c6ff);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.2);
 }
 
 /* ===============================
-   Anuncios
-================================= */
-.ad-container {
-  max-width: 100%;
-  margin: 2rem auto;
-  text-align: center;
-}
-
-/* ===============================
-   Footer
-================================= */
+   FOOTER
+================================== */
 footer {
-  text-align: center;
-  padding: 1.5rem;
-  background: #1e3c72;
+  background: #007bff;
   color: #fff;
-  font-size: 0.9rem;
+  text-align: center;
+  padding: 1rem 0;
   margin-top: 3rem;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
 }
