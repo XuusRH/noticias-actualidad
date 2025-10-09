@@ -1,6 +1,10 @@
+// ============================
+// API News Proxy para Vercel
+// ============================
+
 export default async function handler(req, res) {
-  const API_KEY = "c6ef4146a48995b71719060260";
-  const category = req.query.category || 'business';
+  const API_KEY = "C6efA146a48995b71719060260"; // <-- tu clave NewsAPI
+  const category = req.query.category || "business";
 
   const url = `https://newsapi.org/v2/everything?q=${category}&language=es&pageSize=10&apiKey=${API_KEY}`;
 
@@ -12,8 +16,8 @@ export default async function handler(req, res) {
       return res.status(response.status).json({ error: data });
     }
 
-    res.status(200).json(data);
+    return res.status(200).json(data);
   } catch (error) {
-    res.status(500).json({ error: "Error al conectar con NewsAPI" });
+    return res.status(500).json({ error: "Error al conectar con NewsAPI" });
   }
 }
