@@ -1,47 +1,49 @@
-// ===============================
-// Script Portal Finanzas con NEWSAPI
-// ===============================
+// ==============================
+//  SCRIPT PRINCIPAL
+// ==============================
 
-// 🔑 Clave de NewsAPI
-const API_KEY = "bcda57c6ef4146a48995b71719060260";
+// 🔑 Clave de GNews (pon tu clave gratuita aquí)
+const API_KEY = "TU_CLAVE_DE_GNEWS";
 
-// 🌍 Endpoint de noticias
-const NEWS_URL = `https://newsapi.org/v2/everything?q=finanzas+OR+bolsa+OR+inversion+OR+criptomonedas&language=es&pageSize=10&apiKey=${API_KEY}`;
+// 🌍 Endpoint GNews
+const NEWS_URL = `https://gnews.io/api/v4/top-headlines?category=business&lang=es&max=9&apikey=${API_KEY}`;
 
-// 🚀 Función para cargar noticias
+// ==============================
+//  Cargar Noticias
+// ==============================
 async function loadNews() {
-  const container = document.getElementById('news-container');
-  container.innerHTML = 'Cargando noticias...';
+  const container = document.getElementById("news-container");
+  container.innerHTML = "Cargando noticias...";
 
   try {
     const response = await fetch(NEWS_URL);
-    if (!response.ok) throw new Error('Error al obtener noticias');
+    if (!response.ok) throw new Error("Error al obtener noticias");
+
     const data = await response.json();
 
     if (!data.articles || data.articles.length === 0) {
-      container.innerHTML = '⚠️ No hay noticias disponibles en este momento.';
+      container.innerHTML = "<p>⚠️ No se encontraron noticias.</p>";
       return;
     }
 
-    container.innerHTML = '';
-    data.articles.forEach(article => {
-      const card = document.createElement('div');
-      card.className = 'news-card';
-      card.innerHTML = `
-        <img src="${article.urlToImage || 'assets/placeholder.jpg'}" alt="imagen" class="news-img">
-        <h3>${article.title}</h3>
-        <p>${article.description || 'Sin descripción disponible.'}</p>
-        <a href="${article.url}" target="_blank" class="btn-read">🔗 Leer más</a>
-      `;
-      container.appendChild(card);
-    });
+    container.innerHTML = data.articles.map(article => `
+      <div class="news-card">
+        <img src="${article.image || 'https://via.placeholder.com/400x200?text=Sin+Imagen'}" alt="imagen">
+        <div class="news-card-content">
+          <h3>${article.title}</h3>
+          <p>${article.description || "Sin descripción disponible."}</p>
+          <a href="${article.url}" target="_blank">🔗 Leer más</a>
+        </div>
+      </div>
+    `).join('');
+
   } catch (error) {
-    container.innerHTML = '❌ No se pudieron cargar las noticias. Intenta más tarde.';
-    console.error(error);
+    console.error("❌ Error:", error);
+    container.innerHTML = "<p>⚠️ No se pudieron cargar las noticias. Intenta más tarde.</p>";
   }
 }
 
-// 🚀 Llamar a la función al cargar
-document.addEventListener('DOMContentLoaded', loadNews);
-
-
+// ==============================
+//  Ejecutar al cargar
+// ==============================
+document.addEventListener("DOMContentLoaded", loadNews);
