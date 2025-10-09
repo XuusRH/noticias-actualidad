@@ -5,10 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Portal de Finanzas y Actualidad</title>
 
-  <!-- ✅ Fuentes -->
+  <!-- ✅ Fuentes Google -->
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 
-  <!-- ✅ CSS principal -->
+  <!-- ✅ CSS -->
   <link rel="stylesheet" href="./style.css">
 
   <!-- ✅ Favicon -->
@@ -21,27 +21,32 @@
 </head>
 
 <body>
-  <!-- ======================== BOTÓN MENU LATERAL ======================== -->
-  <button class="menu-toggle" onclick="toggleSidebar()">☰</button>
+  <!-- =================== BOTÓN MENU LATERAL =================== -->
+  <button class="menu-toggle" onclick="toggleSidebar()">☰ Menú</button>
 
-  <!-- ======================== SIDEBAR ======================== -->
-  <aside class="sidebar" id="sidebar">
+  <!-- =================== SIDEBAR LATERAL =================== -->
+  <aside id="sidebar" class="sidebar">
+    <button class="close-btn" onclick="toggleSidebar()">✖</button>
     <h2>📂 Secciones</h2>
-    <a href="#" onclick="loadNews('business')">📈 Economía</a>
-    <a href="#" onclick="loadNews('stock')">📊 Bolsa</a>
-    <a href="#" onclick="loadNews('crypto')">💰 Criptomonedas</a>
-    <a href="#" onclick="loadNews('technology')">💻 Tecnología</a>
-    <a href="#" onclick="loadNews('companies')">🏢 Empresas</a>
-    <a href="#tools">🛠️ Herramientas</a>
+    <nav>
+      <a href="#" onclick="loadNews('business')">📈 Economía</a>
+      <a href="#" onclick="loadNews('stock')">📊 Bolsa</a>
+      <a href="#" onclick="loadNews('crypto')">💰 Criptomonedas</a>
+      <a href="#" onclick="loadNews('technology')">💻 Tecnología</a>
+      <a href="#" onclick="loadNews('companies')">🏢 Empresas</a>
+      <a href="#tools">🛠️ Herramientas</a>
+    </nav>
   </aside>
 
-  <!-- ======================== CABECERA ======================== -->
-  <header>
-    <h1>💹 Portal de Finanzas y Actualidad</h1>
-    <p>Noticias en tiempo real, análisis y herramientas para tus decisiones financieras</p>
+  <!-- =================== CABECERA =================== -->
+  <header class="main-header">
+    <div class="header-content">
+      <h1>💹 Portal de Finanzas y Actualidad</h1>
+      <p>Noticias en tiempo real, análisis y herramientas para tus decisiones financieras</p>
+    </div>
   </header>
 
-  <!-- ======================== ADS #1 debajo del header ======================== -->
+  <!-- =================== ADS #1 =================== -->
   <div class="ad-container">
     <ins class="adsbygoogle"
          style="display:block; text-align:center; margin:20px auto;"
@@ -52,7 +57,7 @@
     <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
   </div>
 
-  <!-- ======================== SECCIÓN NOTICIAS ======================== -->
+  <!-- =================== SECCIÓN NOTICIAS =================== -->
   <main class="section">
     <h2>📰 Últimas Noticias</h2>
     <div id="news-container" class="news-grid">
@@ -60,7 +65,7 @@
     </div>
   </main>
 
-  <!-- ======================== ADS #2 entre noticias y herramientas ======================== -->
+  <!-- =================== ADS #2 =================== -->
   <div class="ad-container">
     <ins class="adsbygoogle"
          style="display:block; text-align:center; margin:20px auto;"
@@ -71,7 +76,7 @@
     <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
   </div>
 
-  <!-- ======================== SECCIÓN HERRAMIENTAS ======================== -->
+  <!-- =================== SECCIÓN HERRAMIENTAS =================== -->
   <section id="tools" class="section">
     <h2>🛠️ Herramientas</h2>
     <div class="tools-container">
@@ -80,7 +85,7 @@
     </div>
   </section>
 
-  <!-- ======================== ADS #3 al final de la página ======================== -->
+  <!-- =================== ADS #3 =================== -->
   <div class="ad-container">
     <ins class="adsbygoogle"
          style="display:block; text-align:center; margin:20px auto;"
@@ -91,10 +96,19 @@
     <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
   </div>
 
-  <!-- ======================== FOOTER ======================== -->
+  <!-- =================== FOOTER =================== -->
   <footer>
     <p>© 2025 Portal de Finanzas y Actualidad</p>
   </footer>
 
-  <!-- ✅ Script de funciones -->
-  <script src="./script.js">
+  <!-- ✅ Script principal -->
+  <script src="./script.js"></script>
+
+  <!-- ✅ Script para el sidebar -->
+  <script>
+    function toggleSidebar() {
+      document.getElementById('sidebar').classList.toggle('open');
+    }
+  </script>
+</body>
+</html>
