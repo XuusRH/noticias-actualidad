@@ -5,45 +5,52 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Portal de Finanzas y Actualidad</title>
 
-  <!-- Fuentes -->
+  <!-- Fuentes Google -->
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 
+  <!-- Estilos -->
   <link rel="stylesheet" href="style.css">
+
+  <!-- Favicon -->
   <link rel="icon" href="favicon.ico" type="image/x-icon">
 
-  <!-- AdSense -->
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7367268518954556" crossorigin="anonymous"></script>
+  <!-- Google AdSense -->
+  <script async 
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7367268518954556"
+          crossorigin="anonymous"></script>
 </head>
 
 <body>
-  <!-- SIDEBAR -->
-  <aside class="sidebar" id="sidebar">
-    <div class="sidebar-header">
-      <h2>📚 Secciones</h2>
-      <button id="closeSidebar">&times;</button>
+  <!-- ================= HEADER ================= -->
+  <header class="main-header">
+    <div class="header-content">
+      <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="logo" class="logo">
+      <h1>Portal de Finanzas y Actualidad</h1>
     </div>
-    <nav>
-      <a href="#" data-category="business">🏦 Economía</a>
-      <a href="#" data-category="stocks">📈 Bolsa</a>
-      <a href="#" data-category="crypto">💰 Criptomonedas</a>
-      <a href="#" data-category="technology">💻 Tecnología</a>
-      <a href="#" data-category="companies">🏢 Empresas</a>
-      <a href="#tools">🛠️ Herramientas</a>
+    <nav class="top-nav">
+      <a href="#news">Noticias</a>
+      <a href="#tools">Herramientas</a>
     </nav>
-  </aside>
-
-  <!-- BOTÓN DE MENÚ -->
-  <button class="menu-toggle" id="menuToggle">☰</button>
-
-  <!-- CABECERA -->
-  <header class="hero-header">
-    <div class="overlay">
-      <h1>💹 Portal de Finanzas y Actualidad</h1>
-      <p>Noticias en tiempo real, análisis y herramientas para tus decisiones financieras</p>
-    </div>
   </header>
 
-  <!-- ADS 1 -->
+  <!-- ================= SIDEBAR ================= -->
+  <aside class="sidebar">
+    <h3>📂 Categorías</h3>
+    <button onclick="loadNews('business')">💹 Negocios</button>
+    <button onclick="loadNews('finance')">💰 Finanzas</button>
+    <button onclick="loadNews('technology')">💻 Tecnología</button>
+    <button onclick="loadNews('science')">🔬 Ciencia</button>
+    <button onclick="loadNews('sports')">⚽ Deportes</button>
+    <button onclick="loadNews('health')">❤️ Salud</button>
+    <button onclick="loadNews('world')">🌍 Internacional</button>
+
+    <hr>
+    <h3>🛠️ Herramientas</h3>
+    <a class="sidebar-link" href="https://simulador-irpf.vercel.app/" target="_blank">🧮 Calculadora IRPF</a>
+    <a class="sidebar-link" href="https://finanza-toolkit.vercel.app/" target="_blank">🏠 Calculadora Hipotecas</a>
+  </aside>
+
+  <!-- ================= ADS 1 (debajo del header) ================= -->
   <div class="ad-container">
     <ins class="adsbygoogle"
          style="display:block; text-align:center; margin:20px auto;"
@@ -54,13 +61,17 @@
     <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
   </div>
 
-  <!-- NOTICIAS -->
-  <section id="news" class="section">
-    <h2>📰 Últimas Noticias</h2>
-    <div id="news-container" class="news-grid">Cargando noticias...</div>
-  </section>
+  <!-- ================= NOTICIAS ================= -->
+  <main>
+    <section id="news" class="section">
+      <h2>📰 Últimas Noticias y Estrategias</h2>
+      <div id="news-container" class="news-grid">
+        <p>⏳ Cargando noticias...</p>
+      </div>
+    </section>
+  </main>
 
-  <!-- ADS 2 -->
+  <!-- ================= ADS 2 (entre noticias y herramientas) ================= -->
   <div class="ad-container">
     <ins class="adsbygoogle"
          style="display:block; text-align:center; margin:20px auto;"
@@ -71,7 +82,7 @@
     <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
   </div>
 
-  <!-- HERRAMIENTAS -->
+  <!-- ================= HERRAMIENTAS ================= -->
   <section id="tools" class="section">
     <h2>🛠️ Herramientas</h2>
     <div class="tools-container">
@@ -80,7 +91,7 @@
     </div>
   </section>
 
-  <!-- ADS 3 -->
+  <!-- ================= ADS 3 (al final de la página) ================= -->
   <div class="ad-container">
     <ins class="adsbygoogle"
          style="display:block; text-align:center; margin:20px auto;"
@@ -91,10 +102,12 @@
     <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
   </div>
 
+  <!-- ================= FOOTER ================= -->
   <footer>
     <p>© 2025 Portal de Finanzas y Actualidad</p>
   </footer>
 
+  <!-- ================= SCRIPT ================= -->
   <script src="script.js"></script>
 </body>
 </html>
