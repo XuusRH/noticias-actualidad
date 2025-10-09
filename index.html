@@ -11,19 +11,36 @@
   <link rel="stylesheet" href="style.css">
   <link rel="icon" href="favicon.ico" type="image/x-icon">
 
-  <!-- Google AdSense -->
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7367268518954556"
-          crossorigin="anonymous"></script>
+  <!-- AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7367268518954556" crossorigin="anonymous"></script>
 </head>
 
 <body>
-  <!-- HEADER -->
-  <header class="main-header">
-    <h1>💹 Portal de Finanzas y Actualidad</h1>
+  <!-- SIDEBAR -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <h2>📚 Secciones</h2>
+      <button id="closeSidebar">&times;</button>
+    </div>
     <nav>
-      <a href="#news">Noticias</a>
-      <a href="#tools">Herramientas</a>
+      <a href="#" data-category="business">🏦 Economía</a>
+      <a href="#" data-category="stocks">📈 Bolsa</a>
+      <a href="#" data-category="crypto">💰 Criptomonedas</a>
+      <a href="#" data-category="technology">💻 Tecnología</a>
+      <a href="#" data-category="companies">🏢 Empresas</a>
+      <a href="#tools">🛠️ Herramientas</a>
     </nav>
+  </aside>
+
+  <!-- BOTÓN DE MENÚ -->
+  <button class="menu-toggle" id="menuToggle">☰</button>
+
+  <!-- CABECERA -->
+  <header class="hero-header">
+    <div class="overlay">
+      <h1>💹 Portal de Finanzas y Actualidad</h1>
+      <p>Noticias en tiempo real, análisis y herramientas para tus decisiones financieras</p>
+    </div>
   </header>
 
   <!-- ADS 1 -->
@@ -39,7 +56,7 @@
 
   <!-- NOTICIAS -->
   <section id="news" class="section">
-    <h2>📰 Últimas Noticias y Estrategias</h2>
+    <h2>📰 Últimas Noticias</h2>
     <div id="news-container" class="news-grid">Cargando noticias...</div>
   </section>
 
@@ -74,7 +91,6 @@
     <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
   </div>
 
-  <!-- FOOTER -->
   <footer>
     <p>© 2025 Portal de Finanzas y Actualidad</p>
   </footer>
