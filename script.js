@@ -1,15 +1,15 @@
 // ==============================
-//  SCRIPT PRINCIPAL
+// SCRIPT PRINCIPAL
 // ==============================
 
-// 🔑 Clave de GNews (pon tu clave gratuita aquí)
-const API_KEY = "TU_CLAVE_DE_GNEWS";
+// 🔑 Clave de GNews (tuya)
+const API_KEY = "0dada3dba36102c3b1430a9889b5371";
 
 // 🌍 Endpoint GNews
 const NEWS_URL = `https://gnews.io/api/v4/top-headlines?category=business&lang=es&max=9&apikey=${API_KEY}`;
 
 // ==============================
-//  Cargar Noticias
+// Cargar Noticias
 // ==============================
 async function loadNews() {
   const container = document.getElementById("news-container");
@@ -44,6 +44,6 @@ async function loadNews() {
 }
 
 // ==============================
-//  Ejecutar al cargar
+// Ejecutar al cargar
 // ==============================
 document.addEventListener("DOMContentLoaded", loadNews);
