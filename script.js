@@ -1,50 +1,31 @@
-// ===========================
-// 📢 Script Portal Finanzas
-// con rotación de APIs y refresco de anuncios
-// ===========================
+// ==============================
+// Script Portal Finanzas
+// ==============================
 
-// 🔑 APIs configuradas
+// APIs disponibles
 const apiList = [
-  {
-    name: "Currents",
-    base: "https://api.currentsapi.services/v1/latest-news?language=es&category=",
-    key: "7vegIhuwUaAHXj9HyBJd0hHJgsZGcuCxhgvYJw5RDt931Bxd"
-  },
-  {
-    name: "GNews",
-    base: "https://gnews.io/api/v4/top-headlines?lang=es&topic=",
-    key: "0dada3dba36102c3b1430a9889b5371"
-  },
-  {
-    name: "NewsAPI",
-    base: "https://newsapi.org/v2/everything?q=",
-    key: "C6efA146a48995b71719060260"
-  }
+  { name: "Currents", base: "https://api.currentsapi.services/v1/latest-news?language=es&category=", key: "7vegIhuwUaAHXj9HyBJd0hHJgsZGcuCxhgvYJw5RDt931Bxd" },
+  { name: "GNews", base: "https://gnews.io/api/v4/top-headlines?lang=es&topic=", key: "0dada3dba36102c3b1430a9889b5371" },
+  { name: "NewsAPI", base: "https://newsapi.org/v2/everything?q=", key: "C6ef4146a48995b71719060260" }
 ];
 
-let currentAPI = 0;               // índice de API en uso
-let currentCategory = "business"; // categoría activa
-let lastFetchTime = 0;            // timestamp de última llamada
+let currentAPI = 0; // API activa
+let lastFetchTime = 0;
 const FETCH_INTERVAL = 15 * 60 * 1000; // 15 minutos
+let currentCategory = "business";
 
-// ===========================
-// 📥 Cargar noticias
-// ===========================
+// =================== Cargar noticias ===================
 async function loadNews(category = "business", force = false) {
+  currentCategory = category;
   const container = document.getElementById("news-container");
-
-  // limitar frecuencia de llamadas
   const now = Date.now();
-  if (!force && now - lastFetchTime < FETCH_INTERVAL) {
-    console.log("⏳ Usando caché, no llamamos todavía a la API");
-    return;
+
+  if (!force && (now - lastFetchTime < FETCH_INTERVAL)) {
+    console.log("⏳ Usando datos recientes");
   }
 
   container.innerHTML = `<p>⏳ Cargando noticias...</p>`;
 
-  let articles = [];
-
-  // Intentar APIs en orden
   for (let i = 0; i < apiList.length; i++) {
     const api = apiList[currentAPI];
     let url = "";
@@ -59,72 +40,55 @@ async function loadNews(category = "business", force = false) {
 
     try {
       const res = await fetch(url);
-      if (!res.ok) throw new Error(`Error HTTP: ${res.status}`);
+      if (!res.ok) throw new Error(`API ${api.name} error: ${res.status}`);
 
       const data = await res.json();
-      articles = data.news || data.articles || [];
+      lastFetchTime = now;
 
-      if (articles.length > 0) {
-        console.log(`✅ Noticias cargadas desde ${api.name}`);
-        break;
+      const articles = data.news || data.articles || [];
+      if (articles.length === 0) {
+        container.innerHTML = `<p>⚠️ No hay noticias disponibles.</p>`;
+        return;
       }
+
+      container.innerHTML = "";
+      articles.forEach(article => {
+        const card = document.createElement("div");
+        card.classList.add("news-card");
+
+        const imageUrl = article.image || article.urlToImage || "https://via.placeholder.com/400x200?text=Sin+Imagen";
+
+        card.innerHTML = `
+          <img src="${imageUrl}" alt="imagen">
+          <div class="news-content">
+            <h3>${article.title}</h3>
+            <p>${article.description || article.summary || ''}</p>
+            <a class="btn-read" href="${article.url}" target="_blank">🔗 Leer más</a>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+      return; // Éxito, no seguir probando más APIs
     } catch (err) {
-      console.warn(`⚠️ Error con ${api.name}, cambiando de API...`);
+      console.warn(`⚠️ Error con ${api.name}, probando siguiente...`, err);
       currentAPI = (currentAPI + 1) % apiList.length;
     }
   }
 
-  lastFetchTime = now;
-  renderNews(articles);
+  container.innerHTML = `<p>⚠️ No se pudieron cargar las noticias. Intenta más tarde.</p>`;
 }
 
-// ===========================
-// 📰 Renderizar noticias
-// ===========================
-function renderNews(articles) {
-  const container = document.getElementById("news-container");
-  container.innerHTML = "";
-
-  if (!articles || articles.length === 0) {
-    container.innerHTML = `<p>⚠️ No hay noticias disponibles ahora.</p>`;
-    return;
-  }
-
-  articles.forEach(article => {
-    const card = document.createElement("div");
-    card.classList.add("news-card");
-
-    card.innerHTML = `
-      <img src="${article.image || article.urlToImage || 'https://via.placeholder.com/400x200?text=Sin+Imagen'}" alt="imagen">
-      <div class="news-content">
-        <h3>${article.title}</h3>
-        <p>${article.description || article.summary || ''}</p>
-        <a class="btn-read" href="${article.url}" target="_blank">🔗 Leer más</a>
-      </div>
-    `;
-    container.appendChild(card);
-  });
-
-  // 🔥 Refrescar anuncios de AdSense al renderizar nuevas noticias
-  if (window.adsbygoogle) {
-    (adsbygoogle = window.adsbygoogle || []).push({});
-  }
-}
-
-// ===========================
-// 📂 Cambio de categoría
-// ===========================
-document.querySelectorAll(".category-link").forEach(link => {
-  link.addEventListener("click", e => {
-    e.preventDefault();
-    const category = e.target.getAttribute("data-category");
-    currentCategory = category;
-    loadNews(category, true);
-  });
+// =================== Menú lateral ===================
+document.getElementById("menu-btn").addEventListener("click", () => {
+  document.getElementById("side-menu").style.left = "0";
 });
 
-// ===========================
-// 🚀 Cargar al iniciar + refrescar cada 15 min
-// ===========================
-document.addEventListener("DOMContentLoaded", () => loadNews());
-setInterval(() => loadNews(currentCategory, true), FETCH_INTERVAL);
+document.getElementById("close-btn").addEventListener("click", () => {
+  document.getElementById("side-menu").style.left = "-260px";
+});
+
+// =================== Inicio ===================
+document.addEventListener("DOMContentLoaded", () => {
+  loadNews(currentCategory);
+  setInterval(() => loadNews(currentCategory, true), FETCH_INTERVAL);
+});
