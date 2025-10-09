@@ -3,7 +3,7 @@
 // ===============================
 
 // 🔑 Clave de NewsAPI
-const API_KEY = "bcda57c6ef4146a48995b71719060260";
+const API_KEY = "andreagarciasola7@gmail.com";
 
 // 🌍 Endpoint de noticias
 const NEWS_URL = `https://newsapi.org/v2/everything?q=finanzas+OR+bolsa+OR+inversion+OR+criptomonedas&language=es&pageSize=10&apiKey=${API_KEY}`;
@@ -43,3 +43,4 @@ async function loadNews() {
 
 // 🚀 Llamar a la función al cargar
 document.addEventListener('DOMContentLoaded', loadNews);
+
