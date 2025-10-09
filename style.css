@@ -1,182 +1,96 @@
-/* ========= Estilos generales ========= */
 body {
+  font-family: 'Roboto', sans-serif;
   margin: 0;
-  font-family: 'Poppins', sans-serif;
-  background: #f7f8fa;
-  color: #333;
+  background: #f5f7fa;
+  transition: background 0.3s, color 0.3s;
+}
+body.dark {
+  background: #121212;
+  color: #ddd;
 }
 
-/* ========= Cabecera ========= */
-header.main-header {
-  background: linear-gradient(to right, #003366, #0055aa);
-  color: white;
-  padding: 20px;
+.hero {
+  background: url('https://source.unsplash.com/1600x400/?finance,stocks') center/cover no-repeat;
+  height: 300px;
+  position: relative;
   text-align: center;
+  color: white;
+}
+.hero .overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+}
+.hero-content {
+  position: relative;
+  top: 40%;
+  transform: translateY(-40%);
+}
+.hero h1 {
   font-family: 'Playfair Display', serif;
+  font-size: 2.8rem;
 }
-
-header h1 {
-  margin: 0;
-  font-size: 2.5rem;
-}
-
-header p {
-  margin-top: 5px;
-  font-size: 1rem;
-}
-
-/* ========= Botón del menú ========= */
-.menu-toggle {
-  position: fixed;
-  top: 15px;
-  left: 15px;
-  background: #0055aa;
-  color: white;
+.btn-hero {
+  padding: 10px 20px;
+  background: gold;
   border: none;
-  padding: 10px 15px;
-  font-size: 18px;
-  border-radius: 4px;
   cursor: pointer;
-  z-index: 1000;
+  font-weight: bold;
 }
 
-/* ========= Sidebar lateral ========= */
+#ticker {
+  background: #003366;
+  color: #fff;
+  padding: 8px;
+  font-size: 0.9rem;
+  text-align: center;
+}
+
 .sidebar {
-  position: fixed;
-  top: 0;
-  left: -260px;
-  width: 260px;
-  height: 100%;
-  background: #002b5c;
+  width: 250px;
+  background: #1a237e;
   color: white;
+  position: fixed;
+  left: -250px;
+  top: 0; bottom: 0;
+  transition: left 0.3s ease;
   padding: 20px;
-  transition: 0.3s ease;
-  z-index: 999;
 }
-
-.sidebar.open {
+.sidebar.active {
   left: 0;
 }
-
-.sidebar h2 {
-  margin-top: 0;
-  font-family: 'Playfair Display', serif;
-  border-bottom: 2px solid #ddd;
-  padding-bottom: 10px;
-}
-
-.sidebar nav a {
+.sidebar a {
   display: block;
-  color: #fff;
-  padding: 10px 0;
-  text-decoration: none;
-  font-size: 1.1rem;
-}
-
-.sidebar nav a:hover {
-  background: #004c99;
-  padding-left: 10px;
-  transition: 0.2s;
-}
-
-.close-btn {
-  background: transparent;
   color: white;
-  font-size: 20px;
-  border: none;
-  position: absolute;
-  top: 15px;
-  right: 15px;
-  cursor: pointer;
+  text-decoration: none;
+  margin: 10px 0;
 }
 
-/* ========= Secciones ========= */
-.section {
-  max-width: 1200px;
-  margin: 60px auto;
-  padding: 20px;
-}
-
-h2 {
-  font-family: 'Playfair Display', serif;
-  font-size: 1.8rem;
-  margin-bottom: 20px;
-  color: #003366;
-}
-
-/* ========= Noticias ========= */
 .news-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  grid-template-columns: repeat(auto-fill,minmax(300px,1fr));
   gap: 20px;
+  padding: 20px;
 }
-
 .news-card {
   background: white;
   border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
   overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
-
 .news-card img {
   width: 100%;
-  height: 180px;
+  height: 200px;
   object-fit: cover;
 }
-
-.news-content {
-  padding: 15px;
+.news-card h3 {
+  margin: 10px;
 }
-
-.news-content h3 {
-  margin: 0 0 10px;
-  font-size: 1.2rem;
-  color: #003366;
-}
-
-.news-content p {
-  font-size: 0.9rem;
-  color: #555;
-}
-
-.news-content .btn-read {
-  display: inline-block;
-  margin-top: 10px;
-  color: white;
-  background: #0055aa;
-  padding: 8px 12px;
-  border-radius: 4px;
-  text-decoration: none;
-}
-
-.news-content .btn-read:hover {
-  background: #003366;
-}
-
-/* ========= Herramientas ========= */
-.tools-container {
-  display: flex;
-  gap: 20px;
-  flex-wrap: wrap;
-}
-
-.tool-btn {
-  display: inline-block;
-  padding: 10px 15px;
-  background: #0055aa;
-  color: white;
-  border-radius: 6px;
-  text-decoration: none;
-}
-
-.tool-btn:hover {
-  background: #003366;
-}
-
-/* ========= Footer ========= */
-footer {
-  background: #002b5c;
-  color: white;
+.btn-read {
+  display: block;
   text-align: center;
-  padding: 15px 0;
+  background: #0077ff;
+  color: white;
+  padding: 10px;
+  text-decoration: none;
 }
