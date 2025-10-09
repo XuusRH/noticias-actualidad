@@ -2,13 +2,16 @@
 // Script de Portal Finanzas
 // ===========================
 
-// 🔑 Tu clave
+// 🔑 Tu clave de GNews
 const API_KEY = "0dada3dba36102c3b1430a9889b5371";
 
 // 🌐 URL para obtener noticias
-const NEWS_URL = `https://gnews.io/api/v4/top-headlines?topic=business&lang=es&country=es&max=10&apikey=${API_KEY}`;
+// Usamos "search" en vez de "top-headlines" para evitar limitaciones del plan
+const NEWS_URL = `https://gnews.io/api/v4/search?q=bolsa+OR+finanzas+OR+economia+OR+criptomonedas&lang=es&max=10&apikey=${API_KEY}`;
 
+// ===========================
 // Función para cargar noticias
+// ===========================
 async function loadNews() {
   const container = document.getElementById('news-container');
   container.innerHTML = "<p>⏳ Cargando noticias...</p>";
@@ -20,13 +23,13 @@ async function loadNews() {
     const data = await response.json();
     container.innerHTML = "";
 
-    // Si no hay artículos
+    // Verificamos que haya artículos
     if (!data.articles || data.articles.length === 0) {
       container.innerHTML = "<p>⚠️ No hay noticias disponibles.</p>";
       return;
     }
 
-    // Mostrar artículos
+    // Mostramos los artículos en tarjetas
     data.articles.forEach(article => {
       const card = document.createElement('div');
       card.classList.add('news-card');
@@ -39,6 +42,7 @@ async function loadNews() {
           <a class="btn-read" href="${article.url}" target="_blank">🔗 Leer más</a>
         </div>
       `;
+
       container.appendChild(card);
     });
 
@@ -48,5 +52,7 @@ async function loadNews() {
   }
 }
 
-// Cargar al iniciar
+// ===========================
+// Ejecutar al cargar la página
+// ===========================
 document.addEventListener("DOMContentLoaded", loadNews);
