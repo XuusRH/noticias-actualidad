@@ -1,86 +1,85 @@
-/* ============== RESET GENERAL ============== */
+/* ======== RESETEO ======== */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+/* ======== BODY ======== */
 body {
-  font-family: 'Poppins', sans-serif;
-  background: #f4f6f9;
+  font-family: 'Poppins', Arial, sans-serif;
+  background: #f5f7fa;
   color: #222;
   line-height: 1.6;
 }
 
-/* ============== CABECERA ============== */
+/* ======== HEADER ======== */
 .main-header {
   background: linear-gradient(90deg, #007bff, #00c6ff);
-  color: #fff;
-  padding: 1.5rem 1rem;           /* compacto */
-  border-bottom-left-radius: 25px;
-  border-bottom-right-radius: 25px;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  color: white;
   text-align: center;
+  padding: 30px 10px;
+  border-radius: 0 0 20px 20px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
 }
 
-.logo h1 {
-  font-size: 2rem;
+.main-header h1 {
+  font-size: 2.8rem;
   font-weight: 700;
-  line-height: 1.2;
-  text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+  margin-bottom: 10px;
 }
 
-/* ============== NAV ============== */
-nav {
-  margin-top: 1rem;
-}
-
-nav a {
+.main-header nav a {
   color: #fff;
-  margin: 0 1rem;
+  margin: 0 20px;
+  font-size: 1.1rem;
   text-decoration: none;
   font-weight: 500;
-  transition: color 0.3s ease-in-out;
+  transition: color 0.3s;
 }
 
-nav a:hover {
+.main-header nav a:hover {
   color: #ffeb3b;
 }
 
-/* ============== SECCIONES ============== */
-section {
-  padding: 2rem 1rem;
-  max-width: 1100px;
-  margin: 0 auto;
+/* ======== SECCIONES ======== */
+.section {
+  padding: 40px 20px;
+  max-width: 1200px;
+  margin: auto;
 }
 
-h2 {
+.section h2 {
   font-size: 2rem;
-  font-weight: 600;
-  margin-bottom: 1rem;
+  font-weight: 700;
+  margin-bottom: 30px;
   color: #333;
+  border-left: 5px solid #007bff;
+  padding-left: 10px;
 }
 
-/* ============== TARJETAS DE NOTICIAS ============== */
-.news-container {
+/* ======== GRID DE NOTICIAS ======== */
+.news-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
-  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 25px;
 }
 
+/* ======== TARJETAS DE NOTICIAS ======== */
 .news-card {
   background: #fff;
   border-radius: 15px;
-  box-shadow: 0 8px 25px rgba(0,0,0,0.1);
   overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
   display: flex;
   flex-direction: column;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
 
 .news-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 12px 35px rgba(0,0,0,0.2);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.15);
 }
 
 .news-card img {
@@ -90,67 +89,67 @@ h2 {
 }
 
 .news-card-content {
-  padding: 1rem;
+  padding: 20px;
 }
 
-.news-card-content h3 {
-  font-size: 1.2rem;
-  margin-bottom: 0.5rem;
+.news-card h3 {
+  font-size: 1.3rem;
   font-weight: 600;
+  margin-bottom: 10px;
 }
 
-.news-card-content p {
+.news-card p {
   font-size: 0.95rem;
   color: #555;
-  margin-bottom: 1rem;
+  margin-bottom: 15px;
 }
 
-/* Botón leer más */
-.news-card-content a {
+.news-card a {
   display: inline-block;
+  padding: 10px 15px;
   background: linear-gradient(90deg, #007bff, #00c6ff);
-  color: #fff;
-  padding: 0.6rem 1.2rem;
-  border-radius: 8px;
+  color: white;
+  border-radius: 10px;
+  font-size: 0.9rem;
   text-decoration: none;
-  font-weight: 500;
   transition: background 0.3s ease-in-out;
 }
 
-.news-card-content a:hover {
-  background: linear-gradient(90deg, #0056b3, #0097d4);
+.news-card a:hover {
+  background: linear-gradient(90deg, #0056d1, #00a6d6);
 }
 
-/* ============== HERRAMIENTAS ============== */
+/* ======== BOTONES DE HERRAMIENTAS ======== */
 .tools-container {
   display: flex;
-  gap: 1rem;
-  flex-wrap: wrap;
   justify-content: center;
-  margin-top: 1rem;
+  flex-wrap: wrap;
+  gap: 25px;
 }
 
 .tool-btn {
-  background: linear-gradient(90deg,#007bff,#00c6ff);
-  color: #fff;
-  padding: 0.8rem 1.5rem;
-  border-radius: 10px;
-  text-decoration: none;
+  display: inline-block;
+  padding: 15px 25px;
+  font-size: 1.1rem;
   font-weight: 600;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  color: white;
+  background: linear-gradient(90deg, #00c6ff, #007bff);
+  border-radius: 12px;
+  text-decoration: none;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  transition: transform 0.2s ease-in-out;
 }
 
 .tool-btn:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+  transform: scale(1.05);
 }
 
-/* ============== FOOTER ============== */
+/* ======== FOOTER ======== */
 footer {
+  background: #007bff;
+  color: white;
   text-align: center;
-  background: #f0f0f0;
-  padding: 1rem;
+  padding: 20px;
   font-size: 0.9rem;
-  color: #555;
-  margin-top: 2rem;
+  margin-top: 40px;
 }
