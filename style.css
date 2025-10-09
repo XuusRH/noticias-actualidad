@@ -1,66 +1,57 @@
-/* ==========================
-   RESET & FUENTES
-========================== */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
+/* ========= Estilos generales ========= */
 body {
+  margin: 0;
   font-family: 'Poppins', sans-serif;
-  background: #f4f6f9;
-  color: #222;
-  line-height: 1.6;
+  background: #f7f8fa;
+  color: #333;
 }
 
-/* ==========================
-   CABECERA
-========================== */
-header {
-  background: linear-gradient(90deg, #0d6efd, #00b4d8);
-  color: #fff;
-  padding: 25px 40px;
+/* ========= Cabecera ========= */
+header.main-header {
+  background: linear-gradient(to right, #003366, #0055aa);
+  color: white;
+  padding: 20px;
   text-align: center;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  font-family: 'Playfair Display', serif;
 }
 
 header h1 {
-  font-family: 'Playfair Display', serif;
+  margin: 0;
   font-size: 2.5rem;
-  margin-bottom: 10px;
 }
 
 header p {
+  margin-top: 5px;
   font-size: 1rem;
-  opacity: 0.9;
 }
 
-nav a {
-  color: #fff;
-  margin: 0 15px;
-  font-weight: 600;
-  text-decoration: none;
+/* ========= Botón del menú ========= */
+.menu-toggle {
+  position: fixed;
+  top: 15px;
+  left: 15px;
+  background: #0055aa;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  font-size: 18px;
+  border-radius: 4px;
+  cursor: pointer;
+  z-index: 1000;
 }
 
-nav a:hover {
-  text-decoration: underline;
-}
-
-/* ==========================
-   SIDEBAR
-========================== */
+/* ========= Sidebar lateral ========= */
 .sidebar {
   position: fixed;
   top: 0;
-  left: -250px;
-  width: 250px;
+  left: -260px;
+  width: 260px;
   height: 100%;
-  background: #001d3d;
-  color: #fff;
+  background: #002b5c;
+  color: white;
   padding: 20px;
-  transition: left 0.3s ease-in-out;
-  z-index: 1000;
+  transition: 0.3s ease;
+  z-index: 999;
 }
 
 .sidebar.open {
@@ -68,72 +59,63 @@ nav a:hover {
 }
 
 .sidebar h2 {
-  font-size: 1.3rem;
-  margin-bottom: 20px;
-  color: #f4f6f9;
+  margin-top: 0;
+  font-family: 'Playfair Display', serif;
+  border-bottom: 2px solid #ddd;
+  padding-bottom: 10px;
 }
 
-.sidebar a {
+.sidebar nav a {
   display: block;
   color: #fff;
-  padding: 8px 0;
-  font-size: 1rem;
+  padding: 10px 0;
   text-decoration: none;
+  font-size: 1.1rem;
 }
 
-.sidebar a:hover {
-  color: #00b4d8;
+.sidebar nav a:hover {
+  background: #004c99;
+  padding-left: 10px;
+  transition: 0.2s;
 }
 
-/* Botón hamburguesa */
-.menu-toggle {
-  position: fixed;
-  top: 20px;
-  left: 20px;
-  background: #0d6efd;
-  color: #fff;
+.close-btn {
+  background: transparent;
+  color: white;
+  font-size: 20px;
   border: none;
-  padding: 10px 15px;
-  font-size: 1.5rem;
-  border-radius: 5px;
+  position: absolute;
+  top: 15px;
+  right: 15px;
   cursor: pointer;
-  z-index: 1100;
 }
 
-/* ==========================
-   SECCIONES
-========================== */
+/* ========= Secciones ========= */
 .section {
   max-width: 1200px;
   margin: 60px auto;
-  padding: 0 20px;
+  padding: 20px;
 }
 
 h2 {
-  font-size: 2rem;
-  color: #0d6efd;
+  font-family: 'Playfair Display', serif;
+  font-size: 1.8rem;
   margin-bottom: 20px;
+  color: #003366;
 }
 
-/* ==========================
-   NOTICIAS
-========================== */
+/* ========= Noticias ========= */
 .news-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   gap: 20px;
 }
 
 .news-card {
-  background: #fff;
-  border-radius: 12px;
+  background: white;
+  border-radius: 8px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.1);
   overflow: hidden;
-  transition: transform 0.2s ease-in-out;
-}
-
-.news-card:hover {
-  transform: translateY(-5px);
 }
 
 .news-card img {
@@ -147,8 +129,9 @@ h2 {
 }
 
 .news-content h3 {
+  margin: 0 0 10px;
   font-size: 1.2rem;
-  margin-bottom: 10px;
+  color: #003366;
 }
 
 .news-content p {
@@ -156,28 +139,44 @@ h2 {
   color: #555;
 }
 
-.btn-read {
+.news-content .btn-read {
   display: inline-block;
   margin-top: 10px;
+  color: white;
+  background: #0055aa;
   padding: 8px 12px;
-  background: #0d6efd;
-  color: #fff;
+  border-radius: 4px;
   text-decoration: none;
+}
+
+.news-content .btn-read:hover {
+  background: #003366;
+}
+
+/* ========= Herramientas ========= */
+.tools-container {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.tool-btn {
+  display: inline-block;
+  padding: 10px 15px;
+  background: #0055aa;
+  color: white;
   border-radius: 6px;
-  font-size: 0.9rem;
+  text-decoration: none;
 }
 
-.btn-read:hover {
-  background: #00b4d8;
+.tool-btn:hover {
+  background: #003366;
 }
 
-/* ==========================
-   FOOTER
-========================== */
+/* ========= Footer ========= */
 footer {
+  background: #002b5c;
+  color: white;
   text-align: center;
-  background: #001d3d;
-  color: #fff;
-  padding: 15px;
-  margin-top: 40px;
+  padding: 15px 0;
 }
