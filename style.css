@@ -1,6 +1,4 @@
-/* ===============================
-   RESET Y FUENTE
-================================== */
+/* ============== RESET GENERAL ============== */
 * {
   margin: 0;
   padding: 0;
@@ -8,115 +6,73 @@
 }
 
 body {
-  font-family: 'Montserrat', sans-serif;
-  background: #f6f7fb;
-  color: #333;
+  font-family: 'Poppins', sans-serif;
+  background: #f4f6f9;
+  color: #222;
   line-height: 1.6;
 }
 
-/* ===============================
-   CABECERA
-================================== */
+/* ============== CABECERA ============== */
 .main-header {
   background: linear-gradient(90deg, #007bff, #00c6ff);
   color: #fff;
-  padding: 2rem 1rem 3rem;
-  border-bottom-left-radius: 40px;
-  border-bottom-right-radius: 40px;
-  box-shadow: 0 5px 25px rgba(0,0,0,0.2);
-}
-
-.main-header .container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  padding: 1.5rem 1rem;           /* compacto */
+  border-bottom-left-radius: 25px;
+  border-bottom-right-radius: 25px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
   text-align: center;
 }
 
-.logo {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.logo-emoji {
-  font-size: 3rem;
-  background: #fff;
-  border-radius: 12px;
-  padding: 5px 10px;
-  color: #00c6ff;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-}
-
 .logo h1 {
+  font-size: 2rem;
   font-weight: 700;
-  font-size: 2.2rem;
   line-height: 1.2;
-  text-shadow: 2px 2px 6px rgba(0,0,0,0.3);
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
 }
 
-.logo h1 span {
-  font-weight: 500;
-  font-size: 1.8rem;
-}
-
+/* ============== NAV ============== */
 nav {
   margin-top: 1rem;
 }
 
 nav a {
   color: #fff;
-  font-weight: 500;
+  margin: 0 1rem;
   text-decoration: none;
-  margin: 0 15px;
-  font-size: 1.1rem;
-  position: relative;
+  font-weight: 500;
+  transition: color 0.3s ease-in-out;
 }
 
-nav a::after {
-  content: '';
-  display: block;
-  height: 3px;
-  background: #fff;
-  width: 0%;
-  transition: 0.3s ease-in-out;
-  margin-top: 5px;
+nav a:hover {
+  color: #ffeb3b;
 }
 
-nav a:hover::after {
-  width: 100%;
-}
-
-/* ===============================
-   SECCIONES
-================================== */
-.section {
+/* ============== SECCIONES ============== */
+section {
+  padding: 2rem 1rem;
   max-width: 1100px;
-  margin: 3rem auto;
-  padding: 0 20px;
+  margin: 0 auto;
 }
 
-.section h2 {
+h2 {
   font-size: 2rem;
-  margin-bottom: 1.5rem;
-  color: #222;
-  text-align: center;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: #333;
 }
 
-/* ===============================
-   NOTICIAS
-================================== */
-.news-grid {
+/* ============== TARJETAS DE NOTICIAS ============== */
+.news-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
   gap: 1.5rem;
 }
 
 .news-card {
   background: #fff;
   border-radius: 15px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.1);
   overflow: hidden;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.1);
   display: flex;
   flex-direction: column;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -124,7 +80,7 @@ nav a:hover::after {
 
 .news-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+  box-shadow: 0 12px 35px rgba(0,0,0,0.2);
 }
 
 .news-card img {
@@ -133,74 +89,68 @@ nav a:hover::after {
   object-fit: cover;
 }
 
-.news-content {
-  padding: 1rem 1.2rem;
+.news-card-content {
+  padding: 1rem;
 }
 
-.news-content h3 {
+.news-card-content h3 {
   font-size: 1.2rem;
+  margin-bottom: 0.5rem;
   font-weight: 600;
-  margin-bottom: 0.6rem;
 }
 
-.news-content p {
+.news-card-content p {
   font-size: 0.95rem;
   color: #555;
   margin-bottom: 1rem;
 }
 
-.read-more {
+/* Botón leer más */
+.news-card-content a {
   display: inline-block;
   background: linear-gradient(90deg, #007bff, #00c6ff);
   color: #fff;
-  text-decoration: none;
-  font-weight: 600;
-  padding: 0.7rem 1.2rem;
+  padding: 0.6rem 1.2rem;
   border-radius: 8px;
-  text-align: center;
-  transition: background 0.3s ease;
+  text-decoration: none;
+  font-weight: 500;
+  transition: background 0.3s ease-in-out;
 }
 
-.read-more:hover {
-  background: linear-gradient(90deg, #0056d2, #00aaff);
+.news-card-content a:hover {
+  background: linear-gradient(90deg, #0056b3, #0097d4);
 }
 
-/* ===============================
-   HERRAMIENTAS
-================================== */
+/* ============== HERRAMIENTAS ============== */
 .tools-container {
   display: flex;
-  justify-content: center;
-  gap: 1.5rem;
+  gap: 1rem;
   flex-wrap: wrap;
-  margin-top: 2rem;
+  justify-content: center;
+  margin-top: 1rem;
 }
 
 .tool-btn {
-  background: linear-gradient(90deg, #007bff, #00c6ff);
+  background: linear-gradient(90deg,#007bff,#00c6ff);
   color: #fff;
+  padding: 0.8rem 1.5rem;
+  border-radius: 10px;
   text-decoration: none;
   font-weight: 600;
-  padding: 0.8rem 2rem;
-  border-radius: 10px;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.15);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .tool-btn:hover {
-  transform: translateY(-4px);
+  transform: translateY(-3px);
   box-shadow: 0 6px 20px rgba(0,0,0,0.2);
 }
 
-/* ===============================
-   FOOTER
-================================== */
+/* ============== FOOTER ============== */
 footer {
-  background: #007bff;
-  color: #fff;
   text-align: center;
-  padding: 1rem 0;
-  margin-top: 3rem;
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
+  background: #f0f0f0;
+  padding: 1rem;
+  font-size: 0.9rem;
+  color: #555;
+  margin-top: 2rem;
 }
