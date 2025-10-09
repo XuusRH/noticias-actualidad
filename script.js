@@ -1,24 +1,24 @@
 // ===========================
-// Script Portal Finanzas
+// Script con Sidebar + Filtro
 // ===========================
 
-// Endpoint del proxy interno
-const NEWS_URL = '/api/news';
+const API_URL = '/api/news';
+let currentCategory = 'business';
 
-// Función para cargar noticias
-async function loadNews() {
+// Cargar noticias por categoría
+async function loadNews(category = 'business') {
   const container = document.getElementById('news-container');
   container.innerHTML = "<p>⏳ Cargando noticias...</p>";
 
   try {
-    const response = await fetch(NEWS_URL);
+    const response = await fetch(`${API_URL}?category=${category}`);
     if (!response.ok) throw new Error(`Error HTTP: ${response.status}`);
 
     const data = await response.json();
     container.innerHTML = "";
 
     if (!data.articles || data.articles.length === 0) {
-      container.innerHTML = "<p>⚠️ No hay noticias disponibles.</p>";
+      container.innerHTML = "<p>⚠️ No hay noticias disponibles en esta categoría.</p>";
       return;
     }
 
@@ -44,4 +44,22 @@ async function loadNews() {
   }
 }
 
-document.addEventListener("DOMContentLoaded", loadNews);
+// Sidebar
+const sidebar = document.getElementById('sidebar');
+const menuToggle = document.getElementById('menuToggle');
+const closeSidebar = document.getElementById('closeSidebar');
+
+menuToggle.addEventListener('click', () => sidebar.classList.add('open'));
+closeSidebar.addEventListener('click', () => sidebar.classList.remove('open'));
+
+document.querySelectorAll('.sidebar nav a[data-category]').forEach(link => {
+  link.addEventListener('click', (e) => {
+    e.preventDefault();
+    currentCategory = e.target.dataset.category;
+    loadNews(currentCategory);
+    sidebar.classList.remove('open');
+  });
+});
+
+// Cargar al inicio
+document.addEventListener("DOMContentLoaded", () => loadNews());
